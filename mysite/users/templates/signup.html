@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load form_helpers %}
 
 {% block contents %}
 <div class="container-fluid users-max-width">
@@ -8,37 +9,15 @@
         </div>
     </div>
 
-    {% if form.non_field_errors %}
-    <div class="alert alert-danger" role="alert">
-        {% for error in form.non_field_errors %}
-            {{ error }}
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% render_errors form %}
 
     <form action="{% url 'users:signup' %}" method="post">
         {% csrf_token %}
-        <div class="form-group">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {{ form.email.errors }}
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            {{ form.name.label_tag }}
-            {{ form.name }}
-            {{ form.name.errors }}
-        </div>
-        <div class="form-group">
-            {{ form.password1.label_tag }}
-            {{ form.password1 }}
-            {{ form.password1.errors }}
-        </div>
-        <div class="form-group">
-            {{ form.password2.label_tag }}
-            {{ form.password2 }}
-            {{ form.password2.errors }}
-        </div>
+        {% render_field form.email %}
+        {% render_field form.name %}
+        {% render_field form.password1 %}
+        {% render_field form.password2 %}
+        {% render_field form.username %}
         <div class="d-grid gap-2 col-8 mx-auto">
             <button type="submit" class="btn btn-info btn-lg btn-block">Sign up</button>
         </div>

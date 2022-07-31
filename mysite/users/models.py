@@ -42,6 +42,7 @@ class User(AbstractBaseUser):
         verbose_name='email address',
         max_length=255,
         unique=True,
+        help_text="We'll never share your email with anyone else."
     )
     name = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
