@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="container-fluid users-max-width">
+    <div class="row">
+        <div class="col px-0">
+            <h3 class="text-center">Sign in</h3>
+        </div>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form action="{% url 'users:signin' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="d-grid gap-2 col-8 mx-auto">
+            <button type="submit" class="btn btn-info btn-lg btn-block">Sign in</button>
+        </div>
+    </form>
+    <div class="text-center">
+        <a href="{% url 'users:signup' %}" style="font-size: 15pt;">Create an account</a>
+    </div>
+</div>
+{% endblock %}
