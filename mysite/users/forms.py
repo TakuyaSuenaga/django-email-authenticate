@@ -1,8 +1,8 @@
-from django import forms
 from django.contrib.auth.forms import (
     AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm)
 
-from .admin import UserCreationForm
+from .admin import UserCreationForm, UserChangeForm
+from .models import User
 from utilities.forms import BootstrapMixin
 
 
@@ -24,3 +24,9 @@ class ResetPasswordForm(BootstrapMixin, PasswordResetForm):
 
 class PasswordSetForm(BootstrapMixin, SetPasswordForm):
     pass
+
+
+class ProfileForm(BootstrapMixin, UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('email', 'name')

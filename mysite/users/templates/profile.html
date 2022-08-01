@@ -5,19 +5,18 @@
 <div class="container-fluid users-max-width">
     <div class="row">
         <div class="col px-0">
-            <h3 class="text-center">Password reset</h3>
+            <h3 class="text-center">Profile</h3>
         </div>
     </div>
 
-    <p>Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one.</p>
-
     {% render_errors form %}
 
-    <form action="{% url 'users:password_reset' %}" method="post">
+    <form action="{% url 'users:profile' user.id %}" method="post">
         {% csrf_token %}
         {% render_field form.email %}
+        {% render_field form.name %}
         <div class="d-grid gap-2 col-8 mx-auto">
-            <button type="submit" class="btn btn-info btn-lg btn-block">Send mail</button>
+            <button type="submit" class="btn btn-info btn-lg btn-block" value="Update">Save changes</button>
         </div>
     </form>
 </div>

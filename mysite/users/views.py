@@ -4,12 +4,12 @@ from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView,
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
     PasswordResetCompleteView)
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
 from .forms import (SigninForm, SignupForm, ChangePasswordForm,
-    ResetPasswordForm, PasswordSetForm)
+    ResetPasswordForm, PasswordSetForm, ProfileForm)
 
 
 class SigninView(LoginView):
@@ -66,3 +66,13 @@ class ResetPasswordConfirmView(PasswordResetConfirmView):
 
 class ResetPasswordCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
+
+
+class ProfileView(UpdateView):
+    model = User
+    fields = ['email', 'name']
+    template_name = 'profile.html'
+
+    def get_form_class(self):
+        """Return the form class to use."""
+        return ProfileForm
