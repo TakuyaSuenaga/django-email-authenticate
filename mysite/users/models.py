@@ -44,7 +44,11 @@ class User(AbstractBaseUser):
         unique=True,
         help_text="We'll never share your email with anyone else."
     )
-    name = models.CharField(max_length=200)
+    name = models.CharField(
+        verbose_name='name',
+        max_length=150,
+        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+    )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

@@ -1,7 +1,8 @@
-from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView)
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
@@ -22,7 +23,16 @@ class SignupView(CreateView):
     template_name = 'signup.html'
     model = User
     form_class = SignupForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('users:welcome')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
+
+
+class WelcomeView(TemplateView):
+    template_name = 'welcome.html'
 
 
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
