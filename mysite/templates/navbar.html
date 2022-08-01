@@ -21,6 +21,7 @@
         </ul>
         <form class="form-inline my-2 my-sm-0">
             {% if user.is_authenticated %}
+            {{ user.name }} &nbsp;&nbsp;
             <a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'users:signout' %}">Signout</a>
             {% else %}
             <a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'users:signin' %}">Sign in</a>
