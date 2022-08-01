@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm)
 
 from .admin import UserCreationForm
 from utilities.forms import BootstrapMixin
@@ -17,3 +18,9 @@ class ChangePasswordForm(BootstrapMixin, PasswordChangeForm):
     pass
 
 
+class ResetPasswordForm(BootstrapMixin, PasswordResetForm):
+    pass
+
+
+class PasswordSetForm(BootstrapMixin, SetPasswordForm):
+    pass

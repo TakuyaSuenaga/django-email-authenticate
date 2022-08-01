@@ -1,12 +1,15 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import (
-    LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView)
+    LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView,
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView)
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
-from .forms import SigninForm, SignupForm, ChangePasswordForm
+from .forms import (SigninForm, SignupForm, ChangePasswordForm,
+    ResetPasswordForm, PasswordSetForm)
 
 
 class SigninView(LoginView):
@@ -43,3 +46,23 @@ class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
 
 class ChangePasswordDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'password_change_done.html'
+
+
+class ResetPasswordView(PasswordResetView):
+    template_name = "password_reset_form.html"
+    form_class = ResetPasswordForm
+    success_url = reverse_lazy("users:password_reset_done")
+
+
+class ResetPasswordDoneView(PasswordResetDoneView):
+    template_name = "password_reset_done.html"
+
+
+class ResetPasswordConfirmView(PasswordResetConfirmView):
+    template_name = "password_reset_confirm.html"
+    form_class = PasswordSetForm
+    success_url = reverse_lazy("users:password_reset_complete")
+
+
+class ResetPasswordCompleteView(PasswordResetCompleteView):
+    template_name = "password_reset_complete.html"
