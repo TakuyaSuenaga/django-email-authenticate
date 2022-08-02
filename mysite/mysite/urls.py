@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TopPageView.as_view(), name='toppage'),
     path('home/', HomeView.as_view(), name="home"),
-    path('', include('users.urls')),
+    path('user/', include('users.urls')),
 ]

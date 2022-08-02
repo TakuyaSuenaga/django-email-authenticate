@@ -68,7 +68,7 @@ class ResetPasswordCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
 
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ['email', 'name']
     template_name = 'profile.html'
