@@ -6,6 +6,7 @@ from django.contrib.auth.views import (
     PasswordResetCompleteView)
 from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login, authenticate
 
 from .models import User
 from .forms import (SigninForm, SignupForm, ChangePasswordForm,
@@ -33,8 +34,17 @@ class SignupView(CreateView):
             return redirect(reverse('home'))
         return super().dispatch(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        username = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password1")
+        user = authenticate(username=username, password=password)
+        if user:
+            login(self.request, user)
+        return response
 
-class WelcomeView(TemplateView):
+
+class WelcomeView(LoginRequiredMixin, TemplateView):
     template_name = 'welcome.html'
 
 
