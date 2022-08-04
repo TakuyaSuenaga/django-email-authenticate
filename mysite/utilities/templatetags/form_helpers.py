@@ -44,3 +44,13 @@ def render_errors(form):
     return {
         "form": form
     }
+
+
+@register.inclusion_tag('render_submit_button.html')
+def render_submit_button(label="Submit"):
+    """
+    Render form submit button.
+    """
+    return {
+        "label": label
+    }

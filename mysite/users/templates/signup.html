@@ -1,25 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'user_base.html' %}
 {% load form_helpers %}
 
-{% block contents %}
-<div class="container-fluid users-max-width">
-    <div class="row">
-        <div class="col px-0">
-            <h3 class="text-center">Sign up</h3>
-        </div>
-    </div>
+{% block index %}Sign up{% endblock %}
 
-    {% render_errors form %}
+{% block detail %}
+{% render_errors form %}
 
-    <form action="{% url 'users:signup' %}" method="post">
-        {% csrf_token %}
-        {% render_field form.email %}
-        {% render_field form.name %}
-        {% render_field form.password1 %}
-        {% render_field form.password2 %}
-        <div class="d-grid gap-2 col-8 mx-auto">
-            <button type="submit" class="btn btn-info btn-lg btn-block">Sign up</button>
-        </div>
-    </form>
-</div>
+<form action="{% url 'users:signup' %}" method="post">
+    {% csrf_token %}
+    {% render_field form.email %}
+    {% render_field form.name %}
+    {% render_field form.password1 %}
+    {% render_field form.password2 %}
+    {% render_submit_button 'Sign up' %}
+</form>
 {% endblock %}
