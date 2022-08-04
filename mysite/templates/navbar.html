@@ -19,13 +19,23 @@
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-sm-0">
+        <ul class="navbar-nav my-2 my-sm-0">
             {% if user.is_authenticated %}
-            {{ user.name }} &nbsp;&nbsp;
-            <a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'users:signout' %}">Signout</a>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle btn btn-outline-info my-2 my-sm-0 account-button" href="#"
+                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.name }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'users:change_password' %}">Change Password</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'users:signout' %}">Sign out</a>
+                </div>
+            </li>
             {% else %}
-            <a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'users:signin' %}">Sign in</a>
+            <a class="btn btn-outline-info my-2 my-sm-0 account-button" href="{% url 'users:signin' %}">Sign in</a>
             {% endif %}
-        </form>
+        </ul>
     </div>
 </nav>
