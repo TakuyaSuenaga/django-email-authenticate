@@ -22,11 +22,12 @@
         <ul class="navbar-nav my-2 my-sm-0">
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle btn btn-outline-info my-2 my-sm-0 account-button" href="#"
-                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ user.name }}
+                <a class="dropdown-toggle btn btn-outline-info my-2 my-sm-0 " href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-regular fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item dropdown-menu-username disabled" tabindex="-1"><small class="text-muted">{{ user.name }}</small></a>
                     <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Profile</a>
                     <a class="dropdown-item" href="{% url 'users:change_password' %}">Change Password</a>
                     <div class="dropdown-divider"></div>
