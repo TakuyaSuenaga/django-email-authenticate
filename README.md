@@ -1,5 +1,5 @@
 # django-email-authenticate
-Django base project with the least amount of code to authenticate email.
+Django base project with the least amount of code to authenticate Email Address not Username.
 
 ```sh
 $ python --version
