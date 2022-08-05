@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import (
@@ -5,7 +6,7 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
     PasswordResetCompleteView)
 from django.views.generic import CreateView, TemplateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import login, authenticate
 
 from .models import User
@@ -23,16 +24,17 @@ class SignoutView(LogoutView):
     pass
 
 
-class SignupView(CreateView):
+class SignupView(UserPassesTestMixin, CreateView):
     template_name = 'signup.html'
     model = User
     form_class = SignupForm
     success_url = reverse_lazy('users:welcome')
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect(reverse('home'))
-        return super().dispatch(request, *args, **kwargs)
+    def test_func(self):
+        return self.request.user.is_authenticated == False
+
+    def handle_no_permission(self):
+        return redirect(reverse('home'))
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -78,11 +80,13 @@ class ResetPasswordCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
 
-class ProfileView(LoginRequiredMixin, UpdateView):
+class ProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    fields = ['email', 'name']
+    form_class = ProfileForm
     template_name = 'profile.html'
 
-    def get_form_class(self):
-        """Return the form class to use."""
-        return ProfileForm
+    def test_func(self):
+        return self.get_object() == self.request.user
+
+    def handle_no_permission(self):
+        raise Http404("")
