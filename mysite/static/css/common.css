@@ -4,7 +4,7 @@
 }
 
 .home-max-width {
-    max-width: 800px;
+    max-width: 750px;
 }
 
 .text-white {
@@ -21,9 +21,8 @@ body {
 }
 
 .tile-button {
+    width: 150px;
     height: 150px;
-    text-align: center;
-    margin: auto;
 }
 
 .dropdown-menu-username {
