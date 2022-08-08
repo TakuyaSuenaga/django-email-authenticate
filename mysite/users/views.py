@@ -62,6 +62,7 @@ class ChangePasswordDoneView(LoginRequiredMixin, PasswordChangeDoneView):
 
 class ResetPasswordView(PasswordResetView):
     template_name = "password_reset_form.html"
+    email_template_name = 'password_reset_email.html'
     form_class = ResetPasswordForm
     success_url = reverse_lazy("users:password_reset_done")
 
