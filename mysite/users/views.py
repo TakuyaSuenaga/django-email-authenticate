@@ -1,14 +1,13 @@
-from django.http import Http404
-from django.shortcuts import redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView,
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
     PasswordResetCompleteView)
 from django.views.generic import CreateView, TemplateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, authenticate
 
+from utilities.mixins import LogoutRequiredMixin, VerifyUserIdentityMixin
 from .models import User
 from .forms import (SigninForm, SignupForm, ChangePasswordForm,
     ResetPasswordForm, PasswordSetForm, ProfileForm)
@@ -24,17 +23,11 @@ class SignoutView(LogoutView):
     pass
 
 
-class SignupView(UserPassesTestMixin, CreateView):
+class SignupView(LogoutRequiredMixin, CreateView):
     template_name = 'signup.html'
     model = User
     form_class = SignupForm
     success_url = reverse_lazy('users:welcome')
-
-    def test_func(self):
-        return self.request.user.is_authenticated == False
-
-    def handle_no_permission(self):
-        return redirect(reverse('home'))
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -81,13 +74,7 @@ class ResetPasswordCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
 
-class ProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProfileView(LoginRequiredMixin, VerifyUserIdentityMixin, UpdateView):
     model = User
     form_class = ProfileForm
     template_name = 'profile.html'
-
-    def test_func(self):
-        return self.get_object() == self.request.user
-
-    def handle_no_permission(self):
-        raise Http404("")
