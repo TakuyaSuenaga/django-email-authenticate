@@ -135,7 +135,7 @@ LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='users:signin'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

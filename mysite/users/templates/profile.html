@@ -4,13 +4,7 @@
 {% block index %}Profile{% endblock %}
 
 {% block detail %}
-{% if messages %}
-<div class="alert alert-success" role="alert">
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
-</div>
-{% endif %}
+{% render_messages %}
 {% render_errors form %}
 
 <form action="{% url 'users:profile' user.id %}" method="post">

@@ -1,4 +1,6 @@
 from django import template
+from django.template import Context
+from django.contrib.messages import constants as message_constants
 
 
 register = template.Library()
@@ -54,3 +56,11 @@ def render_submit_button(label="Submit"):
     return {
         "label": label
     }
+
+
+@register.inclusion_tag('render_messages.html', takes_context=True)
+def render_messages(context, *args, **kwargs):
+    if isinstance(context, Context):
+        context = context.flatten()
+    context.update({"message_constants": message_constants})
+    return context
