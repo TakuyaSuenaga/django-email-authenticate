@@ -1,0 +1,176 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-12 01:28+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: users/models.py:46
+msgid "User"
+msgstr "ユーザー"
+
+#: users/models.py:49
+#, fuzzy
+#| msgid "email address"
+msgid "email address"
+msgstr "メールアドレス"
+
+#: users/models.py:52
+msgid "We'll never share your email with anyone else."
+msgstr "お客様のEメールを他者に開示することはありません。"
+
+#: users/models.py:55
+msgid "Name"
+msgstr "お名前"
+
+#: users/models.py:57
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+"この項目は必須です。半角アルファベット、半角数字、@/./+/-/_ で150文字以下にし"
+"てください。"
+
+#: users/templates/password_change.html:5
+msgid "Password Change"
+msgstr "パスワードを変更"
+
+#: users/templates/password_change.html:15
+msgid "Change"
+msgstr ""
+
+#: users/templates/password_change_done.html:4
+msgid "Successfully changed password!"
+msgstr "パスワードを変更しました。"
+
+#: users/templates/password_change_done.html:8 users/templates/welcome.html:8
+msgid "Home"
+msgstr ""
+
+#: users/templates/password_reset_complete.html:4
+msgid "Password reset completed!"
+msgstr "メールを送信しました！"
+
+#: users/templates/password_reset_complete.html:7
+msgid "You can sign in with your newly set password."
+msgstr "新しく設定したパスワードでログインできます。"
+
+#: users/templates/password_reset_complete.html:9
+#: users/templates/password_reset_confirm.html:23 users/templates/signin.html:5
+#: users/templates/signin.html:17
+msgid "Sign in"
+msgstr "ログイン"
+
+#: users/templates/password_reset_confirm.html:5
+#: users/templates/password_reset_form.html:5
+msgid "Password reset"
+msgstr ""
+
+#: users/templates/password_reset_confirm.html:15
+msgid "Reset"
+msgstr "リセット"
+
+#: users/templates/password_reset_confirm.html:20
+msgid ""
+"It appears you clicked on an invalid password reset link. Please try again."
+msgstr ""
+"無効なパスワードリセットリンクをクリックしたようです。もう一度お試しくださ"
+"い。"
+
+#: users/templates/password_reset_done.html:4
+msgid "Password reset sent!"
+msgstr "メールを送信しました！"
+
+#: users/templates/password_reset_done.html:7
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"入力されたメールアドレスにアカウントが存在する場合、パスワードの設定方法を"
+"メールでお送りしました。間もなく届くはずです。"
+
+#: users/templates/password_reset_done.html:8
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"メールが届かない場合は、登録したアドレスに間違いがないか、迷惑メールフォルダ"
+"をご確認ください。"
+
+#: users/templates/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: users/templates/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: users/templates/password_reset_email.html:8
+msgid "Your username, in case you’ve forgotten:"
+msgstr ""
+
+#: users/templates/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: users/templates/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: users/templates/password_reset_form.html:8
+msgid "Forgotten your password?"
+msgstr "パスワードを忘れましたか？"
+
+#: users/templates/password_reset_form.html:8
+msgid ""
+"Enter your email address below, and we'll email instructions for setting a "
+"new one."
+msgstr ""
+"下記にメールアドレスを入力すると、新しい設定方法をメールでお知らせします。"
+
+#: users/templates/password_reset_form.html:15
+msgid "Send mail"
+msgstr "メールを送信する"
+
+#: users/templates/profile.html:5
+msgid "Profile"
+msgstr "登録情報"
+
+#: users/templates/profile.html:15
+msgid "Save changes"
+msgstr "変更を保存"
+
+#: users/templates/signin.html:15
+msgid "forget password?"
+msgstr "パスワードを忘れましたか？"
+
+#: users/templates/signin.html:20
+msgid "Create an account"
+msgstr "まだ登録していない方"
+
+#: users/templates/signup.html:5 users/templates/signup.html:16
+msgid "Sign up"
+msgstr "新規登録"
+
+#: users/templates/welcome.html:4
+msgid "Welcome to MySite!"
+msgstr "私たちのサイトへようこそ！"
+
+#: users/views.py:85
+msgid "Changes successfully saved."
+msgstr "変更を保存しました。"

@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from .views import *
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+
+urlpatterns = i18n_patterns(
     path(r'admin/', admin.site.urls),
     path(r'', TopPageView.as_view(), name='toppage'),
     path(r'home/', HomeView.as_view(), name="home"),
     path(r'users/', include('users.urls')),
-]
+    prefix_default_language=False
+)

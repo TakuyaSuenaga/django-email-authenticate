@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-12 01:28+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: mysite/settings.py:144
+msgid "English"
+msgstr ""
+
+#: mysite/settings.py:145
+msgid "Japanese"
+msgstr ""
+
+#: templates/navbar.html:15
+msgid "Home"
+msgstr ""
+
+#: templates/navbar.html:19
+msgid "Link"
+msgstr "リンク"
+
+#: templates/navbar.html:22
+msgid "Disabled"
+msgstr "できない"
+
+#: templates/navbar.html:41
+msgid "Profile"
+msgstr "登録情報"
+
+#: templates/navbar.html:42
+msgid "Change Password"
+msgstr "パスワード変更"
+
+#: templates/navbar.html:44
+msgid "Sign out"
+msgstr "ログアウト"
+
+#: templates/navbar.html:48
+msgid "Sign in"
+msgstr "ログイン"
+
+#: templates/toppage.html:17
+msgid "Join us!"
+msgstr "はじめよう！"
+
+#: templates/toppage.html:19
+msgid "Sign up"
+msgstr "新規登録"

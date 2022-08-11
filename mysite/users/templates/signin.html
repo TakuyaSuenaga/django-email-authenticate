@@ -1,7 +1,8 @@
 {% extends 'user_base.html' %}
 {% load form_helpers %}
+{% load i18n %}
 
-{% block index %}Sign in{% endblock %}
+{% block index %}{% trans "Sign in" %}{% endblock %}
 
 {% block detail %}
 {% render_errors form %}
@@ -11,11 +12,12 @@
     {% render_field form.username %}
     {% render_field form.password %}
     <div class="text-right" style="margin-bottom: 15px;">
-        <a href="{% url 'users:password_reset' %}" style="font-size: 12px;">forget password?</a>
+        <a href="{% url 'users:password_reset' %}" style="font-size: 12px;">{% trans 'forget password?' %}</a>
     </div>
-    {% render_submit_button 'Sign in' %}
+    {% trans 'Sign in' as signin %}
+    {% render_submit_button signin %}
     <div class="text-center" style="margin-top: 15px;">
-        <a href="{% url 'users:signup' %}" style="font-size: 15pt;">Create an account</a>
+        <a href="{% url 'users:signup' %}" style="font-size: 15pt;">{% trans 'Create an account' %}</a>
     </div>
 </form>
 {% endblock %}

@@ -1,8 +1,10 @@
+from tabnanny import verbose
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -39,16 +41,20 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+
+    class Meta:
+        verbose_name=_("User")
+
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name=_('email address'),
         max_length=255,
         unique=True,
-        help_text="We'll never share your email with anyone else."
+        help_text=_("We'll never share your email with anyone else.")
     )
     name = models.CharField(
-        verbose_name='name',
+        verbose_name=_('Name'),
         max_length=150,
-        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.")
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

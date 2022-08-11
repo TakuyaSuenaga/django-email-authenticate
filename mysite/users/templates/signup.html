@@ -1,7 +1,8 @@
 {% extends 'user_base.html' %}
 {% load form_helpers %}
+{% load i18n %}
 
-{% block index %}Sign up{% endblock %}
+{% block index %}{% trans 'Sign up' %}{% endblock %}
 
 {% block detail %}
 {% render_errors form %}
@@ -12,6 +13,7 @@
     {% render_field form.name %}
     {% render_field form.password1 %}
     {% render_field form.password2 %}
-    {% render_submit_button 'Sign up' %}
+    {% trans 'Sign up' as signup %}
+    {% render_submit_button signup %}
 </form>
 {% endblock %}

@@ -7,6 +7,7 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 from utilities.mixins import LogoutRequiredMixin, VerifyUserIdentityMixin
 from .models import User
@@ -81,5 +82,5 @@ class ProfileView(LoginRequiredMixin, VerifyUserIdentityMixin, UpdateView):
     template_name = 'profile.html'
 
     def form_valid(self, form):
-        messages.success(self.request, "Changes successfully saved.")
+        messages.success(self.request, _("Changes successfully saved."))
         return super().form_valid(form)

@@ -1,7 +1,8 @@
 {% extends 'user_base.html' %}
 {% load form_helpers %}
+{% load i18n %}
 
-{% block index %}Profile{% endblock %}
+{% block index %}{% trans "Profile" %}{% endblock %}
 
 {% block detail %}
 {% render_messages %}
@@ -11,6 +12,7 @@
     {% csrf_token %}
     {% render_field form.email %}
     {% render_field form.name %}
-    {% render_submit_button 'Save changes' %}
+    {% trans 'Save changes' as save_changes %}
+    {% render_submit_button save_changes %}
 </form>
 {% endblock %}
