@@ -10,6 +10,7 @@ register = template.Library()
 # Filters
 #
 
+
 @register.filter(name='widget_type')
 def widget_type(field):
     """
@@ -22,9 +23,11 @@ def widget_type(field):
     else:
         return None
 
+
 #
 # Inclusion tags
 #
+
 
 @register.inclusion_tag('render_field.html')
 def render_field(field, bulk_nullable=False, label=None):

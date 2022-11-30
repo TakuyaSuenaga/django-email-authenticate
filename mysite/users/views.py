@@ -12,7 +12,7 @@ from django.utils.translation import gettext as _
 from utilities.mixins import LogoutRequiredMixin, VerifyUserIdentityMixin
 from .models import User
 from .forms import (SigninForm, SignupForm, ChangePasswordForm,
-    ResetPasswordForm, PasswordSetForm, ProfileForm)
+                    ResetPasswordForm, PasswordSetForm, ProfileForm)
 
 
 class SigninView(LoginView):

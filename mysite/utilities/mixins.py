@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 class LogoutRequiredMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_authenticated == False
+        return self.request.user.is_authenticated is False
 
     def handle_no_permission(self):
         return redirect(reverse('home'))

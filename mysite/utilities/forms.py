@@ -20,7 +20,8 @@ class BootstrapMixin:
 
             if field.widget.__class__ not in exempt_widgets:
                 css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join([css, 'form-control']).strip()
+                field.widget.attrs['class'] = ' '.join(
+                    [css, 'form-control']).strip()
 
             if field.required and not isinstance(field.widget, forms.FileInput):
                 field.widget.attrs['required'] = 'required'
@@ -30,8 +31,10 @@ class BootstrapMixin:
 
             if field.widget.__class__ == forms.CheckboxInput:
                 css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join((css, 'form-check-input')).strip()
+                field.widget.attrs['class'] = ' '.join(
+                    (css, 'form-check-input')).strip()
 
             if field.widget.__class__ == forms.Select:
                 css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join((css, 'form-select')).strip()
+                field.widget.attrs['class'] = ' '.join(
+                    (css, 'form-select')).strip()

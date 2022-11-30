@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import (
@@ -43,7 +42,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
 
     class Meta:
-        verbose_name=_("User")
+        verbose_name = _("User")
 
     email = models.EmailField(
         verbose_name=_('email address'),
@@ -54,7 +53,8 @@ class User(AbstractBaseUser):
     name = models.CharField(
         verbose_name=_('Name'),
         max_length=150,
-        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.")
+        help_text=_(
+            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.")
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -84,4 +84,4 @@ class User(AbstractBaseUser):
         return self.is_admin
 
     def get_absolute_url(self):
-        return reverse('users:profile', kwargs={'pk' : self.pk})
+        return reverse('users:profile', kwargs={'pk': self.pk})
