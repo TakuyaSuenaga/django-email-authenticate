@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fontawesomefree',
+    'blog',
     'users',
     'utilities',
 ]
@@ -133,8 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = 'users:signin'
-LOGIN_REDIRECT_URL='home'
-LOGOUT_REDIRECT_URL='users:signin'
+LOGIN_REDIRECT_URL = 'blog:home'
+LOGOUT_REDIRECT_URL = 'users:signin'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
