@@ -54,7 +54,7 @@ msgstr "ログアウト"
 msgid "Sign in"
 msgstr "ログイン"
 
-#: templates/toppage.html:17
+#: templates/toppage.html:14
 msgid "Join us!"
 msgstr "はじめよう！"
 
