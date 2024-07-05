@@ -37,6 +37,12 @@ Python 3.9.1
     ...
     Superuser created successfully.
     ```
+1. Compile PO file
+    ```shell
+    $ python3 manage.py compilemessages
+    processing file django.po in django-email-authenticate/mysite/locale/ja/LC_MESSAGES
+    processing file django.po in django-email-authenticate/mysite/users/locale/ja/LC_MESSAGES
+    ```
 1. Run server.
     ```shell
     $ python3 manage.py runserver
