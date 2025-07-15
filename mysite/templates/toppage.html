@@ -1,22 +1,299 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
+
+{% block head %}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .hero-section {
+        height: 100vh;
+        background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+        animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .btn-hero {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease-out 0.6s both;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-hero:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+    }
+    
+    .floating-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    .shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .shape-1 {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .shape-2 {
+        width: 60px;
+        height: 60px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+    }
+    
+    .shape-3 {
+        width: 100px;
+        height: 100px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+    }
+    
+    .shape-4 {
+        width: 40px;
+        height: 40px;
+        top: 30%;
+        right: 30%;
+        animation-delay: 1s;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .navbar-custom {
+        background: rgba(13, 110, 253, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white !important;
+    }
+    
+    .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+        color: white !important;
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+        
+        .btn-hero {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+        
+        .shape {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block contents %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <!-- Card -->
-                <div class="bg-image card shadow-1-strong"
-                     style="background-image: url('../static/img/toppage.jpg');
-                            background-size: cover;
-                            height: 85vh">
-                    <div class="card-body text-white">
-                        <h4 class="card-title">My Site</h4>
-                        <p class="card-text">{% trans 'Join us!' %}</p>
-                        <a href="{% url 'users:signup' %}" class="btn btn-outline-light">{% trans 'Sign up' %}</a>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'toppage' %}">
+            <i class="fas fa-rocket me-2"></i>My Site
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">{% trans 'Home' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">{% trans 'About' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">{% trans 'Services' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">{% trans 'Contact' %}</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:signout' %}">{% trans 'Logout' %}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:signin' %}">{% trans 'Login' %}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" id="home">
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    
+    <!-- Hero Overlay -->
+    <div class="hero-overlay"></div>
+    
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="hero-title">{% trans 'Welcome to My Site' %}</h1>
+                    <p class="hero-subtitle">{% trans 'Discover amazing features and join our community today. Experience the future of digital innovation.' %}</p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                        <a href="{% url 'users:signup' %}" class="btn btn-warning btn-hero">
+                            <i class="fas fa-user-plus me-2"></i>{% trans 'Join Us Now' %}
+                        </a>
+                        <a href="#about" class="btn btn-outline-light btn-hero">
+                            <i class="fas fa-info-circle me-2"></i>{% trans 'Learn More' %}
+                        </a>
                     </div>
                 </div>
-                <!-- Card -->
             </div>
         </div>
     </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Prevent scrolling
+    document.body.style.overflow = 'hidden';
+    
+    // Smooth scroll for anchor links (if needed)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add some interactive effects
+    document.addEventListener('mousemove', function(e) {
+        const shapes = document.querySelectorAll('.shape');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.5;
+            const xOffset = (x - 0.5) * speed * 20;
+            const yOffset = (y - 0.5) * speed * 20;
+            
+            shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+    });
+    
+    // Navbar transparency on scroll (if page becomes scrollable)
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar-custom');
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(13, 110, 253, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(13, 110, 253, 0.95)';
+        }
+    });
+</script>
 {% endblock %}
